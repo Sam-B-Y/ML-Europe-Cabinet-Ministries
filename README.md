@@ -192,7 +192,7 @@ $$
 
 My code is thus:
 
-```docker
+```python
 import numpy as np
 from sklearn.impute import KNNImputer
 
@@ -273,9 +273,9 @@ Our chosen hyperparameters are as follows:
 
 - `learning_rate` : as the default is $0.1$, we can start with that and take smaller learning rates which take more time to boost but can result in better generalization:
     
-    $$
-    \text{learning rate} = [0.01, 0.05, 0.1]
-    $$
+$$
+\text{learning rate} = [0.01, 0.05, 0.1]
+$$
     
 - `max_depth` : The max depth of the tree should be small enough so the model is interpretable when running a normal decision tree. Anything above a depth of 4 has 62 or more splits, which makes it very long and difficult to interpret.
 
@@ -370,10 +370,10 @@ print("In Sample R-squared Score:", r22)
 We get the following result:
 
 $$
-\text{OOS } R^2 \text{ Score: } 0.762124024076923\\
+\displaylines{\text{OOS } R^2 \text{ Score: } 0.762124024076923\\
 \text{In Sample } R^2 \text{ Score:  } 0.8512304143893161 \\
 \text{Best Hyperparameters: [learning rate: 0.01, max depth: 3, n estimators: 1000]} \\
-\text{OOS MSE: } 0.01696820532795456
+\text{OOS MSE: } 0.01696820532795456}
 $$
 
 This shows the model slightly overfits to the training data. Adding hyperparameters such as even smaller learning rates and a higher $\text{n estimators}$ might help make a more accurate XGBoost model if prediction was our goal. However, as we are looking for interpretability for this particular assessment, this is enough evidence that we can achieve a high performance model using a decision tree of depth 3.
@@ -381,9 +381,9 @@ This shows the model slightly overfits to the training data. Adding hyperparamet
 Changing the random state, we get
 
 $$
-\text{OOS } R^2 \text{ Score: } 0.7329330071678797\\
+\displaylines{\text{OOS } R^2 \text{ Score: } 0.7329330071678797\\
 \text{In Sample } R^2 \text{ Score:  } 0.838793560046194 \\
-\text{OOS MSE: } 0.01564926388046726
+\text{OOS MSE: } 0.01564926388046726}
 $$
 
 The two results are similar, showing that this can be replicated.
@@ -403,10 +403,10 @@ Simply with a model of max-depth 2, we can already achieve an $R^2$ of around $.
 ![Untitled](images/Untitled%204.png)
 
 $$
-\text{OOS } R^2 \text{ Score: } 0.6486\\
+\displaylines{\text{OOS } R^2 \text{ Score: } 0.6486\\
 \text{In Sample } R^2 \text{ Score:  } 0.70166 \\
 \text{OOS MSE: } 0.019908\\
-\text{Best Alpha after CV: } 0.0001
+\text{Best Alpha after CV: } 0.0001}
 $$
 
 There is still a bit of overfitting but, it is a decently good model and very interpretable. The story of this model is that:
@@ -422,10 +422,10 @@ Our tree is thus very interpretable and aligns with what we would expect. We cou
 ![Untitled](images/Untitled%205.png)
 
 $$
-\text{OOS } R^2 \text{ Score: } 0.66259\\
+\displaylines{\text{OOS } R^2 \text{ Score: } 0.66259\\
 \text{In Sample } R^2 \text{ Score:  } 0.01749 \\
 \text{OOS MSE: } 0.74193\\
-\text{Best Alpha after CV: } 0.0001
+\text{Best Alpha after CV: } 0.0001}
 $$
 
 As we can see, the  $R^2$ slightly improves with 4 extra splits. However, as interpretability considerably decreases, we will **keep the tree with a depth of 2** which is a lot easier to interpret.
@@ -545,10 +545,12 @@ The relationship between `prime_minister` and the `cabinet_proportion` is obviou
 
 Running a linear regression with the remaining variables and adding a constant variable (with a `kfold` of  $10$and a `test size` of $0.2$ as explained for the XGBoost), we get the following model. ****(Rounded to 3 decimal places for simplicity)****
 
-$\text{Out-of-Sample }R^2: 0.662\\
+$$
+\displaylines{\text{Out-of-Sample }R^2: 0.662\\
 \text{In Sample }R^2:0.686\\
 \text{Mean Squared Error: }0.0168\\
-\text{cabinet proportion} = 0.089 \text{ PivoltalityPCA} + 0.110 \text{ prime minister} + 0.020 \text{ sq cabinet} +0.006 \text{ seats proportion}$
+\text{cabinet proportion} = 0.089 \text{ PivoltalityPCA} + 0.110 \text{ prime minister} + 0.020 \text{ sq cabinet} +0.006 \text{ seats proportion}}
+$$
 
 ```python
 X2 = X_standardized[['pivotalityPCA', 'prime_minister', 'sq_cabinet', 'seats_proportion']]
