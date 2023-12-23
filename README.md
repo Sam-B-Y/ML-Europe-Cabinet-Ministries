@@ -1,4 +1,4 @@
-# Modelling Cabinet Ministries Distribution in European Parliamentary Democracies
+# Modeling Cabinet Ministries Distribution in European Parliamentary Democracies
 
 # 1. Introduction
 
